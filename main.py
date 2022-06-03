@@ -1,4 +1,6 @@
+#Import the art work
 from coffee_art import logo
+#Dictionary that holds the values of the types of coffee and it's details
 MENU = {
     "espresso": {
         "ingredients": {
@@ -24,14 +26,16 @@ MENU = {
         "cost": 3.0,
     }
 }
-
+#Dictionary that holds the resources the coffee machine has to make each coffee
 resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
 }
 
+#Print the logo
 print(logo)
+#Variable that holds the amount of money the coffee machine has made
 profit = 0
 
 def report():
@@ -60,7 +64,6 @@ def type_of_coffee(amount, coffee):
         print(f"Here is ${round(change, 2)} in change.")
         print(f"Here is your {coffee}. Enjoy!")
 
-#Function that calculates the amount of money the user inputs
 def money():
     """Returns the total calculated from coins inserted."""
     print("Please insert coins.")
@@ -83,17 +86,23 @@ def resources_sufficient(coffee):
         if resources["milk"] < MENU[coffee]["ingredients"]["milk"]:
             print("Sorry there is not enough milk.")
             return False
+
 #While loop boolean
 continue_program = True
 
 while continue_program:
+    #Prompt that is displayed for the user to input the types of coffee they would like
     prompt = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    #If the user inputs off the boolean will be set to false and end the program
     if prompt == "off":
         continue_program = False
+    #If the user inputs report the report function will be called
     elif prompt == "report":
         report()
+    #Condition statement that is executed if the amount of resources is indufficient
     elif resources_sufficient(prompt) == False:
         continue
+    #Condiftion statements for the type of coffee the user enters, calling the type_of_coffee function, and adding profit
     if prompt == "espresso":
         type_of_coffee(money(), "espresso")
         profit += 1.5
